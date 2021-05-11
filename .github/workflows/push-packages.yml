@@ -15,7 +15,7 @@ jobs:
     - name: Docker build
       run: |
         cd packages
-        docker build -t ghcr.io/rokcarl/test_public .
+        docker build -t ghcr.io/rokcarl/test_public:${{ github.sha }} .
     - name: Docker push
       run: |
-        docker push ghcr.io/rokcarl/test_public
+        docker push ghcr.io/rokcarl/test_public:${{ github.sha }}
