@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+    - master
+name: Publish Docker image
+jobs:
+  DockerBuild:
+    name: Publish Docker image
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@f6ce2afa7079cb075a124c93c79d61779d845782
+    - name: Docker login
+      run: |
+        echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u rokcarl --password-stdin
+    - name: Docker build
+      run: |
+        cd packages
+        docker build -t rokcarl/test_public .
+    - name: Docker push
+      run: |
+        docker push rokcarl/test_public
