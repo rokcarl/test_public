@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "App, v1.9"
+echo "App, v1.10"
